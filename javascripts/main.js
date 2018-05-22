@@ -1,1 +1,3 @@
-// write something here
+const events = require('./events');
+
+events.myLinks();
