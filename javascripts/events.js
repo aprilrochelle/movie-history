@@ -21,7 +21,8 @@ const myLinks = (e) => {
 const pressEnter = () => {
   $(document).keypress((e) => {
     if (e.key === 'Enter') {
-      tmdb.showResults('cow');
+      const searchWords = $('#searchBar').val().replace(' ', '%20';
+      tmdb.showResults(searchWords);
     }
   });
 };
