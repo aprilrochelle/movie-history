@@ -19,8 +19,11 @@ const myLinks = (e) => {
 };
 
 const pressEnter = () => {
-  // keypress event
-  tmdb.showResults();
+  $(document).keypress((e) => {
+    if (e.key === 'Enter') {
+      tmdb.showResults('cow');
+    }
+  });
 };
 
 const initializer = () => {
