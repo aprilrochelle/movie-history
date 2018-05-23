@@ -1,3 +1,5 @@
+const tmdb = require('./tmdb');
+
 const myLinks = (e) => {
   $(document).click((e) => {
     if (e.target.id === 'auth') {
@@ -16,6 +18,16 @@ const myLinks = (e) => {
   });
 };
 
+const pressEnter = () => {
+  // keypress event
+  tmdb.showResults();
+};
+
+const initializer = () => {
+  myLinks();
+  pressEnter();
+};
+
 module.exports = {
-  myLinks,
+  initializer,
 };
