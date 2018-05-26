@@ -1,11 +1,13 @@
-const domString = (movieArray) => {
+const domString = (movieArray, config) => {
   let movieString = '';
   movieString += `<div class="container-fluid">`;
-  movieString += `<div class="row">`;
-  movieArray.forEach((movie) => {
+  movieArray.forEach((movie, index) => {
+    if (index % 3 === 0) {
+      movieString += `<div class="row">`;
+    }
     movieString += `<div class="col-sm-6 col-md-4">`;
     movieString +=  `<div class="thumbnail">`;
-    movieString +=    `<img src="..." alt="...">`;
+    movieString +=    `<img src="${config.base_url}/w342/${movie.poster_path}" alt="movie poster">`;
     movieString +=    `<div class="caption">`;
     movieString +=      `<h3>${movie.original_title}</h3>`;
     movieString +=      `<p>${movie.overview}</p>`;
@@ -14,8 +16,10 @@ const domString = (movieArray) => {
     movieString +=    `</div>`;
     movieString +=  `</div>`;
     movieString += `</div>`;
+    if (index % 3 === 2) {
+      movieString += `</div>`;
+    }
   });
-  movieString += `</div>`;
   movieString += `</div>`;
   printToDom(movieString);
 };
