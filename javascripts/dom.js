@@ -1,4 +1,4 @@
-const domString = (movieArray, config) => {
+const domString = (movieArray, config, whereToPrint) => {
   let movieString = '';
   movieString += `<div class="container-fluid">`;
   movieArray.forEach((movie, index) => {
@@ -6,13 +6,13 @@ const domString = (movieArray, config) => {
       movieString += `<div class="row">`;
     }
     movieString += `<div class="col-sm-6 col-md-4">`;
-    movieString +=  `<div class="thumbnail">`;
-    movieString +=    `<img src="${config.base_url}/w342/${movie.poster_path}" alt="movie poster">`;
+    movieString +=  `<div class="thumbnail movie">`;
+    movieString +=    `<img data-poster="${movie.poster_path}" src="${config.base_url}/w342/${movie.poster_path}" alt="Movie Poster">`;
     movieString +=    `<div class="caption">`;
-    movieString +=      `<h3>${movie.original_title}</h3>`;
-    movieString +=      `<p>${movie.overview}</p>`;
+    movieString +=      `<h3 class="movie-title">${movie.original_title ? movie.original_title : movie.title}</h3>`;
+    movieString +=      `<p class="movie-overview">${movie.overview}</p>`;
     movieString +=      `<p><a href="#" class="btn btn-primary" role="button">Review</a>`;
-    movieString +=      `<a href="#" class="btn btn-default" role="button">Wishlist</a></p>`;
+    movieString +=      `<a class="btn btn-default addMovieToWishlist" role="button">Wishlist</a></p>`;
     movieString +=    `</div>`;
     movieString +=  `</div>`;
     movieString += `</div>`;
@@ -21,11 +21,11 @@ const domString = (movieArray, config) => {
     }
   });
   movieString += `</div>`;
-  printToDom(movieString);
+  printToDom(whereToPrint, movieString);
 };
 
-const printToDom = (string) => {
-  $('#movies-list').html(string);
+const printToDom = (whereToPrint, string) => {
+  $(`#${whereToPrint}`).html(string);
 };
 
 module.exports = {
